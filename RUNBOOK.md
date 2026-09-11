@@ -10,7 +10,9 @@ spoken words are in SCRIPT.md; this file is what to type and click.
   ttyd`), and Claude Code installed and logged in (`claude auth status`
   says loggedIn true). Builds run on a Claude subscription; no API key.
 - A `.env` file is not required. `.env.example` exists only so the
-  pattern is visible; nothing in the deck reads a secret.
+  pattern is visible; nothing in the deck reads a secret. If you do create
+  one, put it at the repo root; `deck/.env` is a symlink to it (create
+  with `ln -s ../.env deck/.env` on a fresh clone).
 - Chrome or any browser for the deck. An external monitor to bring along,
   plus the cable to mirror it to the projector; the laptop screen holds
   the speaker notes.
