@@ -1,7 +1,7 @@
 # The Spec Is the Hard Part
 
-Materials for the KCDC 2026 talk by Ben Dechrai (@bendechrai). One
-conference scheduler, built four times by a coding agent, each time from a
+Materials for the talk by Ben Dechrai (@bendechrai). One conference
+scheduler, built four times by a coding agent, each time from a
 better spec. The talk is the four specs, the four builds, and what changed
 between them.
 
@@ -43,8 +43,9 @@ Do the same for v2, v3 and v4 and compare what comes out. The deck is at
 http://localhost:4747/ and the runbook says which clicks reveal which bug
 at each stage.
 
-## Credits
+## Licence
 
-Photos are from Unsplash; see `deck/public/images/ATTRIBUTION.md`. The
-Warp and Tessl marks belong to their owners and appear on one slide to
-attribute a quotation.
+Code (the deck, the scripts and the four builds) is MIT. The specs, the
+script and the slide text are CC BY 4.0. See `LICENSE.md`. Photos are from
+Unsplash under the Unsplash licence (`deck/public/images/ATTRIBUTION.md`);
+the Warp and Tessl marks belong to their owners.

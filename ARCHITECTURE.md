@@ -1,6 +1,6 @@
 # Framework for the talk
 
-Delivery: KCDC, 10-11 Sep 2026. The word-for-word script is `SCRIPT.md`;
+First delivered at KCDC, September 2026. The word-for-word script is `SCRIPT.md`;
 the narrative and the transcript research are kept outside this repo,
 with the talk notes. This file is how the deck, the demo and the fallbacks fit
 together, and the order to build them in.
