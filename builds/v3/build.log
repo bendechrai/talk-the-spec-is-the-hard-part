@@ -1,0 +1,23 @@
+[kickoff] stage 3 -> <repo>/builds/v3  model=sonnet  2026-09-09T18:33:07Z
+Build complete. Here's the summary:
+
+**What I built:** A conference scheduler (Next.js App Router + TypeScript, Drizzle ORM over better-sqlite3, Tailwind, Vitest, Playwright) in `builds/v3`.
+
+- **Schema/DB**: `rooms`, `speakers`, `talks`, `talk_speakers`, `slots`, `placements` tables with unique constraints (one talk scheduled at most once; one talk per room per slot). Migrations live in `drizzle/`, generated via `drizzle-kit generate`.
+- **Scheduling rules** (`lib/scheduling-rules.ts`): pure, unit-tested function enforcing all seven constraints from the spec (speaker double-booking, talk-vs-slot length, breaks, room capacity, track clashes, one-slot-per-talk, one-talk-per-room-per-slot). Wired into `lib/schedule-service.ts`, which runs everything inside a single `better-sqlite3`/Drizzle transaction so a rejected placement never touches the database.
+- **API**: `app/api/schedule/route.ts` — GET (current schedule), POST (schedule a talk, 409 with a descriptive error on rejection), DELETE (unschedule).
+- **UI**: `app/page.tsx` (server component, reads live DB state, forced dynamic so it's never stale) + `components/schedule-board.tsx` (client component) — days in time order, rooms as cells showing title/speakers, breaks labeled as breaks, an "Unscheduled talks" panel, and inline error banner on rejection (no page reload).
+- **Tests**: 18 Vitest tests covering every "Done when" bullet except the browser e2e ones — unit tests for the rules, integration tests hitting the real API route + SQLite DB, and component render tests against seeded data. Two Playwright specs (`e2e/schedule.spec.ts`) cover the full golden path and the "error shown without reload, DB stays in sync" scenario.
+
+**How to run it:**
+```
+npm install
+npm run seed      # already run once — data.db has the seed data loaded
+npm run dev        # serves on $PORT, default 3000
+npm run typecheck && npm run lint && npm test && npm run test:e2e
+```
+
+**Gates status:** `typecheck`, `lint`, `test` (18/18), and `npm run build` all pass cleanly. `npm run dev` serves correctly (verified via the Playwright web-server bootstrap, which also confirmed migrate+seed+serve works end to end).
+
+**What I did not do:** `npm run test:e2e` cannot actually launch a browser in this sandbox — Chromium isn't installed under `.pw-browsers`, and this project's `.claude/settings.json` explicitly denies `npx playwright install` (along with `curl`/`wget`/`git`, i.e. no network access is permitted here). This is an environment restriction, not a code issue — the webServer boot in that same run showed the app itself serving and querying the seeded DB correctly with no errors; only the browser launch step failed. Someone with network access (or with that deny rule lifted) needs to run `npx playwright install chromium` once, after which `npm run test:e2e` should pass as written.
+[kickoff] exit=0 elapsed=816s 2026-09-09T18:46:43Z

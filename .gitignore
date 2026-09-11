@@ -1,0 +1,25 @@
+# secrets: everything lives in .env files, never committed
+.env
+.env.*
+!.env.example
+
+# live builds happen here on stage; fallbacks are in builds/
+live/
+
+# per-stage build artefacts (.pw-browsers is the empty browser cache each build sees)
+node_modules/
+.next/
+*.db
+*.db-journal
+*.sqlite
+coverage/
+test-results/
+playwright-report/
+
+# deck runtime state
+demo.config.json
+
+# os
+.DS_Store
+.run/
+.pw-browsers/

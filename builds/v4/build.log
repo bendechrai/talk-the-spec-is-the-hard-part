@@ -1,0 +1,33 @@
+[kickoff] stage 4 -> <repo>/builds/v4  model=sonnet  2026-09-09T18:33:16Z
+Everything's in place. Here's the summary.
+
+Waived: test:e2e - Playwright's Chromium binary isn't installed, and `.claude/settings.json` explicitly denies `npx playwright install*` in this sandbox. Running `npx playwright test` confirms the dev server itself boots, migrates, seeds, and serves correctly (webServer started fine) — the failure is purely "browser executable doesn't exist" at the `browserType.launch` step, not an app problem. Criteria proven only by the e2e suite (schedule page render/interaction in a real browser, error-without-reload behavior) are unproven here, though the same behavior is exercised by the Vitest component test and the API-level integration tests.
+
+## What I built
+
+A conference scheduler: Next.js (App Router, TypeScript) + Drizzle ORM over better-sqlite3, Tailwind UI, Vitest for unit/integration/component tests, Playwright for e2e.
+
+- **Schema** (`db/schema.ts` + migration in `migrations/`): days, rooms, speakers, talks, talk_speakers, slots, placements — with unique constraints on `(room, slot)` and `talk`.
+- **Constraint engine** (`lib/scheduling.ts`): the single place enforcing every rule (break slots, length-vs-slot, room capacity, speaker/track conflicts on *overlapping* slots, uniqueness, day-bounds on slot creation, and re-validation on talk/room updates and deletes) — all wrapped in `db.transaction` for atomicity. Both the API routes and the UI call this same module; the UI has no validation logic of its own, it just posts to the API.
+- **API routes**: `/api/placements` (place/unplace), `/api/rooms/[id]`, `/api/slots`, `/api/slots/[id]`, `/api/talks/[id]`, `/api/schedule`.
+- **UI** (`app/page.tsx` + `components/ScheduleBoard.tsx`): schedule grid (one column per room, breaks spanning all columns, time-ordered), an unplaced-talks list with inline place controls, and inline error display on rejection (no reload).
+
+## How to run it
+
+```
+npm install
+npm run seed     # already run — data.db is seeded
+npm run dev      # serves on $PORT, default 3000
+```
+
+Gates run and their final lines:
+- `npm run typecheck` → no errors
+- `npm run lint` → no errors
+- `npm test` → `Test Files 13 passed (13)`, `Tests 19 passed (19)`
+- `npm run build` → production build succeeds, all API routes correctly dynamic
+- `npm run test:e2e` → waived (see above); confirmed the dev server itself starts and serves correctly before failing at browser launch
+
+I also sabotage-tested one constraint (disabled the conflict loop) to confirm the relevant tests actually fail when the behavior is removed, then reverted.
+
+Not done: no room/slot creation UI (only via API — not required by the spec's "Done when" list), no auth (out of scope per spec).
+[kickoff] exit=0 elapsed=1110s 2026-09-09T18:51:46Z

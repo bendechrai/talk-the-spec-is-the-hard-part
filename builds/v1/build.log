@@ -1,0 +1,25 @@
+[kickoff] stage 1 -> <repo>/builds/v1  model=sonnet  2026-09-09T18:14:01Z
+Database is populated. The build is complete.
+
+## Summary
+
+Built a conference scheduler at `builds/v1`: Next.js (App Router, TypeScript) + Drizzle ORM over SQLite (`better-sqlite3`) + Tailwind v4 + Vitest, matching the stack constraints in the project's CLAUDE.md.
+
+**Data model** (`src/db/schema.ts`): `speakers`, `rooms`, `slots`, `talks`, and `assignments` (one assignment per talk, unique on room+slot to prevent double-booking a room).
+
+**Scheduling logic** (`src/lib/scheduling.ts`, unit-tested in `tests/scheduling.test.ts`): validates an assignment before it's saved —
+- rejects double-booking a room/slot
+- rejects double-booking a speaker across rooms in the same slot
+- rejects a talk that's longer than its target slot's duration
+
+**UI** (`app/page.tsx` + `app/ScheduleBoard.tsx`): a day-by-day grid (rooms × time slots) showing scheduled talks with unassign buttons, plus an "Unscheduled talks" list where organisers pick a room/slot and schedule a talk. Errors from conflicting assignments surface inline.
+
+**API**: `POST`/`DELETE /api/assignments` backs the UI.
+
+**How to run**: `npm install`, then `npm run seed` (already run — data.db has 3 rooms, 13 slots, 6 speakers, 10 talks from `seed.json`), then `npm run dev` (respects `PORT`, defaults to 3000). `npm test` runs the Vitest suite; `npm run lint` and `npm run build` both pass clean.
+
+I verified the whole flow live: started the dev server, exercised the API directly (schedule a talk, hit a room conflict, a speaker conflict, and an over-length-for-slot rejection, then unassign), and confirmed the grid renders correctly — then reset the DB back to the clean seed state.
+
+**Choices made where the spec was silent**: a talk occupies exactly one slot/room; speakers can't be double-booked into simultaneous slots; a talk can't be scheduled into a slot shorter than its length (lunch/break slots are otherwise just regular slots with an informational label).
+
+Not done: authentication/authorization (single shared organiser view), drag-and-drop (uses selects), and no admin UI for editing rooms/slots/talks/speakers themselves (schedule-only, per the seed data).

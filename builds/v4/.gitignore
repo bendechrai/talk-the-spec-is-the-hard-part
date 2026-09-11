@@ -1,0 +1,16 @@
+node_modules
+.next
+out
+data.db
+data.db-*
+e2e/*.db
+e2e/*.db-*
+*.db
+*.db-shm
+*.db-wal
+.env*.local
+test-results
+playwright-report
+.pw-browsers
+next-env.d.ts
+tsconfig.tsbuildinfo

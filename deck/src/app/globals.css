@@ -1,0 +1,4 @@
+/* No Tailwind here: its preflight sets [hidden] { display: none !important },
+   which stops Reveal.js showing non-current slides in overview (Esc) and
+   in the speaker view previews. The deck's styling lives in styles/theme.css. */
+html, body { height: 100%; margin: 0; background: #0e0f11; }

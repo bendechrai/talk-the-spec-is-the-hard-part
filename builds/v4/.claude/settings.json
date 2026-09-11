@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(node *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(mkdir *)",
+      "Bash(rm *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(touch *)",
+      "Bash(sqlite3 *)",
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep"
+    ],
+    "deny": [
+      "Bash(npx playwright install*)",
+      "Bash(npm exec playwright install*)",
+      "Bash(git *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "WebFetch",
+      "WebSearch"
+    ]
+  }
+}

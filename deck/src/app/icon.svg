@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- A conference schedule grid; one slot is double-booked. -->
+  <rect width="64" height="64" rx="14" fill="#0e0f11"/>
+  <g stroke="#8a877f" stroke-width="3" stroke-linecap="round">
+    <line x1="12" y1="22" x2="52" y2="22"/>
+    <line x1="12" y1="34" x2="52" y2="34"/>
+    <line x1="12" y1="46" x2="52" y2="46"/>
+    <line x1="25" y1="14" x2="25" y2="52"/>
+    <line x1="39" y1="14" x2="39" y2="52"/>
+  </g>
+  <rect x="27" y="24" width="10" height="8" rx="1.5" fill="#e0913a"/>
+  <rect x="41" y="24" width="10" height="8" rx="1.5" fill="#e0913a"/>
+</svg>

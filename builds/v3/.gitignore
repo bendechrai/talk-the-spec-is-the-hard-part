@@ -1,0 +1,10 @@
+node_modules
+.next
+data.db
+data.db-*
+data.e2e.db
+data.e2e.db-*
+tsconfig.tsbuildinfo
+test-results
+playwright-report
+.pw-browsers
