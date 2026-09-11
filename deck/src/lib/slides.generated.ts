@@ -144,7 +144,7 @@ export const generatedSections: Section[] = [
       },
       {
         "kind": "text",
-        "text": "The expensive half got cheap.",
+        "text": "The price of implementation is now on a fire sale.",
         "image": "/images/sale.jpg",
         "notes": "Agentic development changes the input to that calculation. When\nimplementation costs minutes instead of months, the thing that made\nwaterfall unaffordable stops holding. You can specify rigorously and\nchange your mind constantly, because the expensive half got cheap. This\nis the third entry in the series, and it takes the part of waterfall\neverybody threw away.\n\nI want to be careful here. I am not arguing for waterfall. Some of you\nlived through it. The claim is narrower than that: the reason we stopped\nspecifying was cost, that cost has collapsed, and we have not updated the\nhabit.\n\nHere is what that looks like in practice. This is a message I sent to an\nagent at nine in the evening on the twenty-fifth of August.",
         "glance": [
@@ -215,7 +215,7 @@ export const generatedSections: Section[] = [
       {
         "kind": "text",
         "text": "The most dangerous requirements are the ones too obvious to state.",
-        "sub": "The model fills them in. You do not get to see which way.",
+        "sub": "The model now fills in the blanks, but you don't know which way it'll go.",
         "image": "/images/fog.jpg",
         "notes": "The most dangerous requirements are the ones too obvious to state. And\nthe modern version of that sentence has a second half: the model fills\nthem in, and you do not get to see which way until you go looking.",
         "glance": [
@@ -277,7 +277,7 @@ export const generatedSections: Section[] = [
     "slides": [
       {
         "kind": "text",
-        "text": "Most business rules are shapes.",
+        "text": "Business rules are generally more of a guideline.",
         "image": "/images/cutters.jpg",
         "notes": "Most of what people call a business rule is a shape.\n\n\"A speaker cannot be in two places at once\" is a uniqueness constraint.\n\"A talk must fit its slot\" is a relationship with an invariant. \"Every\ntalk has exactly one track\" is cardinality. When you leave the shape\nunstated, the agent invents one. And it invents a different one in the\nAPI layer than it did in the storage layer, because it invented each one\nindependently, in a different file, on a different afternoon.",
         "glance": [
@@ -288,7 +288,7 @@ export const generatedSections: Section[] = [
       },
       {
         "kind": "text",
-        "text": "Types. Cardinality. Nullability. Invariants.",
+        "text": "Types, Cardinality, Nullability, and Invariants.",
         "notes": "Four things to state explicitly, every time. Types. Cardinality.\nNullability. Invariants.\n\nNullability is the one people skip, and it is the one that produces the\nmost downstream mess, because an optional field the agent thinks is\nrequired, and a required field the agent thinks is optional, produce\nfailures in completely different places, and neither of them looks like a\nnullability bug when you find it.\n\nTwo stories.",
         "glance": [
           "State 4 things every time: types, cardinality, nullability, invariants.",
@@ -374,7 +374,7 @@ export const generatedSections: Section[] = [
       },
       {
         "kind": "text",
-        "text": "Better, and still wrong.",
+        "text": "Better, but still wrong.",
         "notes": "This is the point of the second build, and it is not that it is better.\nIt is that it is better and still wrong, and it is wrong in a place you\nnow have to think harder to find. Build 1's bug was visible from the back\nrow. Build 2's bug is the kind that ships. The failures got less obvious,\nwhich is worse, not better.\n\nAnd I know what half of you are thinking. \"So you just keep adding\nrequirements forever?\" No. You add them until the remaining unknowns are\nthings you genuinely do not know yet, rather than things you knew and did\nnot say. That line is the difference between specification and\nparalysis. Capacity was in the spreadsheet. I knew it. I did not say it.",
         "glance": [
           "Better AND still wrong, in a harder place.",
@@ -475,7 +475,7 @@ export const generatedSections: Section[] = [
       },
       {
         "kind": "text",
-        "text": "The agent's green is not your green.",
+        "text": "When done isn't actually done.",
         "image": "/images/green-light.jpg",
         "notes": "Which brings me to the second spec. The done spec. It is its own\ndocument, and it has its own failure mode, and this is the one that cost\nme the most.\n\nStory. Twenty-seventh of August. The agent told me the tests were green\nall afternoon. They were not. A pull request went up, CI failed, and the\nagent's first move was to reach for its memory: \"a known flaky test\". It\nwas not. The test summary said one thousand four hundred and fifty-four\npassed. The process had exited one. Three component tests were mounting\na real server action, unmocked, and its failure surfaced after the suite\nfinished, which fails the process while the summary stays green.\n\nAnd the reason I had not seen it all afternoon:",
         "glance": [
@@ -488,7 +488,7 @@ export const generatedSections: Section[] = [
       {
         "kind": "receipt",
         "id": "grep",
-        "title": "Two layers of green hid one red.",
+        "title": "Models will still make mistakes.",
         "notes": "It had piped the test runner through grep to tidy the output. Grep\nreturned zero. Two layers of green hid one red.",
         "glance": [
           "Piped vitest through grep to tidy output. grep returned 0.",
@@ -498,7 +498,7 @@ export const generatedSections: Section[] = [
       {
         "kind": "receipt",
         "id": "newposts",
-        "title": "Verified, from the wrong side.",
+        "title": "Models will still verify using the wrong tools.",
         "notes": "Same week, different layer. The agent told me no emails had gone out from\na system I was testing. I got one. It had checked a fifteen-minute window\nthat started nine minutes after the send.",
         "glance": [
           "Same week. Agent: no emails went out. I got one.",
@@ -568,7 +568,7 @@ export const generatedSections: Section[] = [
       {
         "kind": "receipt",
         "id": "invisible",
-        "title": "All green. Nothing to click. It was done.",
+        "title": "When agents do what you asked, but *you* forgot.",
         "notes": "One more from the real product, twenty seconds. Sixteenth of August.\nEighteen migrations, one thousand eight hundred and eighty-four unit\ntests, a hundred and fifty-six integration tests, thirty-eight end to\nend. All green. I opened the app. Nothing had changed. The entire phase\nwas underneath: schema, identity, permissions, audit.\n\nThe agent offered me a rule on the spot: every phase ends with something\nyou can click. I nearly took it. It is the wrong rule. That phase was\ndone. Every criterion had a test and every test ran. What I wanted was\nreassurance, and reassurance is not a criterion. Compare it with what you\njust saw in Build 3: there, a gate was skipped and the green was not\ndone. Here, no gate was skipped and the green was done, whether or not I\ncould see it. That is what \"know which green to trust\" means. If a human\ngenuinely needs to see something, write that down as a criterion and it\nbecomes a test the agent can run. Otherwise the gates are the definition\nof done, and my discomfort is my problem.\n\nNow. Everything so far has been me improving my own spec by noticing my\nown gaps. That has an obvious ceiling. The gaps I can notice are not the\ngaps that hurt me.",
         "glance": [
           "16 Aug: 18 migrations, 1,884 unit, 156 integration, 38 e2e. All green.",
@@ -647,7 +647,7 @@ export const generatedSections: Section[] = [
       },
       {
         "kind": "text",
-        "text": "The critic works better as a stranger.",
+        "text": "Models can't self-critique.",
         "notes": "Now the upgrade, from doing this for real. Same model with a different\ninstruction is the floor. What actually found my blind spots was a\nstranger.\n\nA different model, on purpose. I wrote to one agent: \"make sure you use a\ndifferent model than the one that created it, to cover blind spots.\" It\nfound two blockers in a design the first model had called finished.\n\nA hostile persona in a separate session. I had a second instance read my\ndata processing agreement as a corporate procurement reviewer. It found a\nthirty-day notice clause I had agreed to that would have stopped me\nswitching model providers.",
         "glance": [
           "Same model + different instruction = the floor. Blind spots found by a STRANGER.",
@@ -659,7 +659,7 @@ export const generatedSections: Section[] = [
       {
         "kind": "receipt",
         "id": "mcpclient",
-        "title": "The consumer wrote the next spec.",
+        "title": "Models can act like your users.",
         "notes": "And the consumer as critic. I connected an AI assistant to my product's\nAPI and told it to act as a conference's travel team and book a speaker.\nIt came back with: \"the tool edits existing records, it can't create\nthem,\" and \"it needs the talk ID, and none of my tools surface talk IDs.\"\nThe consumer of the API wrote the next spec.\n\nAnd remember Reddit Markdown. The critic should attack premises, not\njust gaps. \"Which sentences in this spec are facts about the world, and\nhave you checked them?\" That question is in my critic prompt now. It was\nnot, until I needed it.",
         "glance": [
           "AI assistant connected to product API, playing a conference travel team.",
@@ -684,7 +684,7 @@ export const generatedSections: Section[] = [
       {
         "kind": "receipt",
         "id": "stopkey",
-        "title": "The gate is a promise. A broken key is a fact.",
+        "title": "Gates are just promises that can be broken.",
         "notes": "And for anything irreversible, one step further. Second of September.\nHalf past four in the morning. I had a system that could email a hundred\nand forty-eight people, and I did not want it to, and the agent had built\na human-in-the-loop confirmation gate for exactly that. Good gate. Tested.\nI did not trust it.\n\nSo I changed the production mail key and appended the letters S, T, O, P\nto the end of it. Emails now could not send even if we wanted them to.\n\nThe gate is a promise. A broken credential is a fact. For anything you\ncannot take back, make the failure impossible, not guarded.",
         "glance": [
           "2 Sep, 04:30. System could email 148 people. Agent built human-in-loop gate. Good gate. Tested. Didn't trust it.",
@@ -716,7 +716,7 @@ export const generatedSections: Section[] = [
       {
         "kind": "receipt",
         "id": "waived",
-        "title": "Same gate. Same sandbox. One instruction changed.",
+        "title": "Help models know what to do when things go wrong.",
         "notes": "And the report. Build 3, four minutes ago: \"Build complete\" on line one,\nand the gate it could not run explained at the bottom where I would not\nread it. Build 4: line one is \"Waived: test:e2e\", and it lists which\ncriteria are therefore unproven.\n\nSame model. Same sandbox. Same missing browser. The only thing that\nchanged was one sentence in the process spec. \"Never skip a gate\" became\n\"if a gate cannot run, say so on line one and list what is unproven.\"\nThe ban told it what not to do. The recipe told it what to do when it\ncould not comply. Hold on to that one too; it comes back.",
         "glance": [
           "Build 3: 'Build complete' line 1; skipped gate buried at the bottom.",
@@ -803,7 +803,7 @@ export const generatedSections: Section[] = [
       },
       {
         "kind": "text",
-        "text": "Prohibitions decay. Procedures survive.",
+        "text": "Prohibitions decay, but procedures survive.",
         "image": "/images/no-parking.jpg",
         "notes": "Prohibitions decay. Procedures survive.\n\n\"Don't\" is a criterion you cannot imagine the test for. \"When X happens,\ndo Y\" is one you can. It is the same rule as the done spec, applied to\nthe process spec. If you cannot imagine the procedure, it is not a rule.\nThat is why Build 4's report started with \"Waived\" and Build 3's did not.\nBuild 3 had a ban. Build 4 had a recipe.\n\nThis is also the answer to a question I get asked, which is: isn't the\nrest just taste? When to roll back, when to hand off to a sub-agent,\nwhen to build a thing twice and compare. I used to think so. It is\nprocess spec that has not been written as a recipe yet. What is left\nafter you write the recipes is small: knowing which recipe applies.\nKeep that. Write down the rest.",
         "glance": [
@@ -825,7 +825,7 @@ export const generatedSections: Section[] = [
       {
         "kind": "text",
         "text": "Where next?",
-        "sub": "The person who writes the three specs is the last one in the building.",
+        "sub": "Coding might be a dying art, but the gates, the criteria, and the specs? That's the job now.",
         "image": "/images/mind-the-gap.jpg",
         "notes": "Everything in this hour assumed a technical human writing the three\nspecs. Someone who knows what a uniqueness constraint is. Who reads\n\"speaker\" and thinks about identity. Who can tell a vague criterion from\na sharp one.\n\nTake the code out of the pipeline, and that person is not removed. They\nare the only role left that matters. The interview with the client, the\ncriteria that become tests, the gates that decide what ships: that is\nthe job now, and you just spent an hour learning it. The frontier is not\nbetter code generation. The code problem is close to solved. The\nfrontier is producing those three documents well, and quickly, for\nclients who have never seen a spec.",
         "glance": [
@@ -838,7 +838,7 @@ export const generatedSections: Section[] = [
       {
         "kind": "text",
         "text": "The dark factory.",
-        "sub": "Client in. Software out. Humans at the gates.",
+        "sub": "Client in, Software out, and Humans at the gates.",
         "image": "/images/dark-factory.jpg",
         "notes": "This is what I am building now. Manufacturing calls it a dark factory.\nThe lights are off because the machines do not need them, not because\nnobody works there. A client signs up and is interviewed by an account\nmanager agent, and the conversation becomes a versioned spec. That is\nthe first document. A planner breaks it into issues. Coding agents pick\nthem up in ephemeral containers, each on its own worktree, and hand back\na merge request. Deterministic tests are the gate. That is the second\ndocument. Green merges on its own; red goes back round with the failure\nattached. And the third document, the process spec, is the factory\nfloor itself: what runs, in what order, and who is allowed to say yes.\n\nSomebody designed that line. Somebody decides what leaves the building.\nThe floor runs without me. The specs and the gates do not.",
         "glance": [
@@ -880,7 +880,7 @@ export const generatedSections: Section[] = [
         "kind": "photo",
         "image": "/images/monday.jpg",
         "fit": "cover",
-        "caption": "Monday. One ticket. Write it three times. Attack it. Run it. Click the thing.",
+        "caption": "Pick a ticket, write three specs, attack them, then build.",
         "notes": "Monday. Take one ticket. Not the hardest one. Write it three times: what\nshould exist, what would prove it, and what the agent should do when the\ntest suite cannot run. Hand it to a second model and tell it to attack.\nFix what it finds. Kick it off. Go to lunch. When you come back, do not\nread the diff first. Click the thing.",
         "glance": [
           "Monday. 1 ticket, not the hardest.",
@@ -898,7 +898,7 @@ export const generatedSections: Section[] = [
           "Co-authoring makes a model agreeable. Attacking makes it useful.",
           "Deterministic gates or nothing.",
           "I never fixed the code. I fixed the request.",
-          "Prohibitions decay. Procedures survive."
+          "Prohibitions decay, but procedures survive."
         ],
         "aside": [
           "Thank you.",

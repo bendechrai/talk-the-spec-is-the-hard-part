@@ -3,11 +3,19 @@ import receipts from "@/lib/receipts.json";
 type Msg = { who: string; when: string; text: string };
 const all = receipts as Record<string, Msg[]>;
 
+// *word* in a title renders in italics.
+function em(s: string) {
+  return s.split(/(\*[^*]+\*)/g).map((part, i) => {
+    if (part.startsWith("*") && part.endsWith("*") && part.length > 2) return <em key={i}>{part.slice(1, -1)}</em>;
+    return <span key={i}>{part}</span>;
+  });
+}
+
 export default function Receipt({ id, title }: { id: string; title?: string }) {
   const msgs = all[id] ?? [];
   return (
     <div className="receipt">
-      {title && <p className="receipt-title">{title}</p>}
+      {title && <p className="receipt-title">{em(title)}</p>}
       <div className="receipt-card">
         {msgs.map((m, i) => (
           <div key={i} className={`msg ${m.who}`}>

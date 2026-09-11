@@ -17,6 +17,7 @@ Conventions:
 - `[SLIDE: quote, <when> - "..." | bg <file> | logos a.svg b.svg]` - a
   quotation; optional screenshot behind it (blurred, tilted) and optional
   logos from deck/public/images/logos, rendered white.
+- `*word*` in any headline, sub line or receipt title renders in italics.
 - Lines separated by ` / ` appear one per click. A line starting `!! `
   is a sticker: a tilted prompt bubble on the accent colour.
 - `[DEMO: ...]` - an action on screen. Exact clicks are in RUNBOOK.md.
@@ -171,7 +172,7 @@ otherwise produced eighteen-month projects that shipped the wrong thing
 beautifully. So: decide late, decide often, iterate. And it worked, and
 we have been doing it for twenty years.
 
-[SLIDE: bg sale.jpg | The expensive half got cheap.]
+[SLIDE: bg sale.jpg | The price of implementation is now on a fire sale.]
 > Implementation: months to minutes. The expensive half got cheap.
 > Specify rigorously AND change your mind constantly.
 > 3rd entry in the series; takes the part everyone threw away.
@@ -303,7 +304,7 @@ The data said that slot was called Lunch. Nothing said what Lunch meant.
 The model made a choice, and the choice was that lunch is a slot like
 any other. From the back of this room, that is the one that ships.
 
-[SLIDE: bg fog.jpg | The most dangerous requirements are the ones too obvious to state. / The model fills them in. You do not get to see which way.]
+[SLIDE: bg fog.jpg | The most dangerous requirements are the ones too obvious to state. / The model now fills in the blanks, but you don't know which way it'll go.]
 > Most dangerous requirements: too obvious to state.
 > 2nd half now: the model fills them in; you don't see which way.
 
@@ -359,7 +360,7 @@ Off it goes.
 
 ## 16:00 Theory 2: The data model is the spec (6 min, ~850 words)
 
-[SLIDE: bg cutters.jpg | Most business rules are shapes.]
+[SLIDE: bg cutters.jpg | Business rules are generally more of a guideline.]
 > Business rules are shapes.
 > Speaker 1 place = uniqueness. Talk fits slot = relationship + invariant. 1 track = cardinality.
 > Unstated shape: agent invents one. Different in API vs storage.
@@ -373,7 +374,7 @@ unstated, the agent invents one. And it invents a different one in the
 API layer than it did in the storage layer, because it invented each one
 independently, in a different file, on a different afternoon.
 
-[SLIDE: Types. Cardinality. Nullability. Invariants.]
+[SLIDE: Types, Cardinality, Nullability, and Invariants.]
 > State 4 things every time: types, cardinality, nullability, invariants.
 > Nullability = the one people skip, most downstream mess.
 > Optional-thinks-required vs required-thinks-optional: failures in different places, neither looks like nullability.
@@ -493,7 +494,7 @@ Accepted. Two hundred and fifty people in a room for forty.
 Two talks in the Data track, same time, opposite sides of the building.
 Accepted.
 
-[SLIDE: Better, and still wrong.]
+[SLIDE: Better, but still wrong.]
 > Better AND still wrong, in a harder place.
 > Build 1 bug: back row. Build 2 bug: ships. Less obvious = worse.
 > Objection: add requirements forever? No. Until unknowns are things you genuinely don't know.
@@ -625,7 +626,7 @@ vague, the test is vague, and a vague test is worse than no test because
 it reports green. Everyone in this room has a test suite with tests that
 would pass if the feature were deleted.
 
-[SLIDE: bg green-light.jpg | The agent's green is not your green.]
+[SLIDE: bg green-light.jpg | When done isn't actually done.]
 > 2nd spec: the DONE spec. Own document, own failure mode. Cost me most.
 > 27 Aug. Green all afternoon. PR up, CI failed. Agent: 'known flaky test'. Wasn't.
 > Summary: 1,454 passed. Process exit 1.
@@ -645,14 +646,14 @@ finished, which fails the process while the summary stays green.
 
 And the reason I had not seen it all afternoon:
 
-[SLIDE: receipt grep | Two layers of green hid one red.]
+[SLIDE: receipt grep | Models will still make mistakes.]
 > Piped vitest through grep to tidy output. grep returned 0.
 > 2 layers of green hid 1 red.
 
 It had piped the test runner through grep to tidy the output. Grep
 returned zero. Two layers of green hid one red.
 
-[SLIDE: receipt newposts | Verified, from the wrong side.]
+[SLIDE: receipt newposts | Models will still verify using the wrong tools.]
 > Same week. Agent: no emails went out. I got one.
 > Checked a 15-min window starting 9 min AFTER the send.
 
@@ -741,7 +742,7 @@ would not read it.
 
 Hold that. Build 4 answers it.
 
-[SLIDE: receipt invisible | All green. Nothing to click. It was done.]
+[SLIDE: receipt invisible | When agents do what you asked, but *you* forgot.]
 > 16 Aug: 18 migrations, 1,884 unit, 156 integration, 38 e2e. All green.
 > Opened the app: nothing changed. Whole phase underneath: schema, identity, permissions, audit.
 > Agent offered a rule: 'every phase ends with something you can click'. Nearly took it. WRONG rule.
@@ -841,7 +842,7 @@ track rule, when everything else says "cannot". Overlapping slots that
 are not identical. Co-presented talks. Every one of those is in the v4
 diff you just saw, because this is how v4 was written.
 
-[SLIDE: The critic works better as a stranger.]
+[SLIDE: Models can't self-critique.]
 > Same model + different instruction = the floor. Blind spots found by a STRANGER.
 > 1. Different model on purpose: 'cover blind spots'. Found 2 blockers in a 'finished' design.
 > 2. Hostile persona, separate session: DPA read as procurement reviewer. Found 30-day notice clause blocking model switches.
@@ -860,7 +861,7 @@ data processing agreement as a corporate procurement reviewer. It found a
 thirty-day notice clause I had agreed to that would have stopped me
 switching model providers.
 
-[SLIDE: receipt mcpclient | The consumer wrote the next spec.]
+[SLIDE: receipt mcpclient | Models can act like your users.]
 > AI assistant connected to product API, playing a conference travel team.
 > 'Edits existing records, can't create them.' 'Needs talkId, no tool surfaces talk IDs.'
 > Consumer of the API wrote the next spec.
@@ -894,7 +895,7 @@ exactly what you should not be delegating. Where the gate is a judgement
 call, you get agreeable nonsense. Where the gate is a test run, you get
 software.
 
-[SLIDE: receipt stopkey | The gate is a promise. A broken key is a fact.]
+[SLIDE: receipt stopkey | Gates are just promises that can be broken.]
 > 2 Sep, 04:30. System could email 148 people. Agent built human-in-loop gate. Good gate. Tested. Didn't trust it.
 > Changed prod mail key, appended S-T-O-P. Cannot send even if we wanted.
 > Gate = promise. Broken credential = fact. Irreversible => impossible, not guarded.
@@ -936,7 +937,7 @@ Priya's other talk, same time, other room. "Speaker Priya Natarajan is
 already speaking in Event Sourcing Without Regret." Co-speakers were not
 in v3's spec. The critic asked.
 
-[SLIDE: receipt waived | Same gate. Same sandbox. One instruction changed.]
+[SLIDE: receipt waived | Help models know what to do when things go wrong.]
 > Build 3: 'Build complete' line 1; skipped gate buried at the bottom.
 > Build 4: 'Waived: test:e2e' IS line 1, and it lists what is unproven.
 > Same model, same sandbox, same missing browser. 1 sentence changed in the process spec.
@@ -1048,7 +1049,7 @@ the unavoidable case.
 
 [PAUSE]
 
-[SLIDE: bg no-parking.jpg | Prohibitions decay. Procedures survive.]
+[SLIDE: bg no-parking.jpg | Prohibitions decay, but procedures survive.]
 > Prohibitions decay. Procedures survive.
 > 'Don't' = criterion with no imaginable test. 'When X, do Y' = one you can.
 > Same rule as done spec, applied to process spec. Can't imagine the procedure => not a rule.
@@ -1072,7 +1073,7 @@ Keep that. Write down the rest.
 
 ## 54:00 Where next (3 min, ~400 words)
 
-[SLIDE: bg mind-the-gap.jpg | Where next? / The person who writes the three specs is the last one in the building.]
+[SLIDE: bg mind-the-gap.jpg | Where next? / Coding might be a dying art, but the gates, the criteria, and the specs? That's the job now.]
 > Whole hour assumed a technical human writing 3 specs. Someone who knows what a uniqueness constraint is.
 > Take the code out of the pipeline: that person is not removed. They're the only role left that matters.
 > The interview, the criteria, the gates. That IS the job now. You just spent an hour learning it.
@@ -1091,7 +1092,7 @@ better code generation. The code problem is close to solved. The
 frontier is producing those three documents well, and quickly, for
 clients who have never seen a spec.
 
-[SLIDE: bg dark-factory.jpg | The dark factory. / Client in. Software out. Humans at the gates.]
+[SLIDE: bg dark-factory.jpg | The dark factory. / Client in, Software out, and Humans at the gates.]
 > What I'm building now. Lights off because the MACHINES don't need them, not because nobody works there.
 > Account manager agent interviews the client -> versioned spec (spec 1).
 > Planner breaks it into issues. Coding agents in ephemeral containers, own worktree.
@@ -1135,7 +1136,7 @@ yours.
 
 ## 57:00 Close (2 min, ~250 words)
 
-[SLIDE: photo monday.jpg | Monday. One ticket. Write it three times. Attack it. Run it. Click the thing.]
+[SLIDE: photo monday.jpg | Pick a ticket, write three specs, attack them, then build.]
 > Monday. 1 ticket, not the hardest.
 > Write it 3x: what should exist, what proves it, what the agent does when tests can't run.
 > 2nd model: attack. Fix. Kick off. Lunch.

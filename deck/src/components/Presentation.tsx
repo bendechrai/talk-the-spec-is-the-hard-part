@@ -12,13 +12,23 @@ import Critic from "@/components/demo/Critic";
 import SeedTable from "@/components/demo/SeedTable";
 import Receipt from "@/components/Receipt";
 
+// *word* in a headline renders in italics.
+function Em({ s }: { s: string }) {
+  const parts = s.split(/(\*[^*]+\*)/g);
+  return (
+    <>
+      {parts.map((p, i) => (p.startsWith("*") && p.endsWith("*") && p.length > 2 ? <em key={i}>{p.slice(1, -1)}</em> : <span key={i}>{p}</span>))}
+    </>
+  );
+}
+
 function Body({ s }: { s: Slide }) {
   switch (s.kind) {
     case "text":
       return (
         <div className={`slide-text${s.dark ? " dark" : ""}${s.image ? (s.box ? " over box" : " over mark") : ""}`}>
-          <h1><span>{s.text}</span></h1>
-          {s.sub && <p className="sub"><span>{s.sub}</span></p>}
+          <h1><span><Em s={s.text} /></span></h1>
+          {s.sub && <p className="sub"><span><Em s={s.sub} /></span></p>}
         </div>
       );
     case "photo":

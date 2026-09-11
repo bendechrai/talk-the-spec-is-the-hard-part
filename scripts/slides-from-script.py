@@ -32,7 +32,7 @@ SEVEN_LINES = [
     "Co-authoring makes a model agreeable. Attacking makes it useful.",
     "Deterministic gates or nothing.",
     "I never fixed the code. I fixed the request.",
-    "Prohibitions decay. Procedures survive.",
+    "Prohibitions decay, but procedures survive.",
 ]
 
 def is_portrait(path):
