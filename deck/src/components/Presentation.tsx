@@ -29,7 +29,8 @@ function Body({ s }: { s: Slide }) {
       );
     case "quote":
       return (
-        <div className="slide-quote">
+        <div className={`slide-quote${s.image ? " over" : ""}`}>
+          {s.image && <div className="receipt-bg" style={{ backgroundImage: `url(${s.image})` }} aria-hidden />}
           <blockquote>{s.text}</blockquote>
           <p className="who">
             {s.who}, {s.when}

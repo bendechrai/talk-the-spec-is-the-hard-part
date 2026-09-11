@@ -5,7 +5,7 @@ export type Glance = { glance?: string[] };
 export type Slide = Glance & (
   | { kind: "text"; text: string; sub?: string; notes?: string; dark?: boolean; image?: string; box?: boolean }
   | { kind: "photo"; image: string; fit?: "cover" | "contain"; caption?: string; notes?: string }
-  | { kind: "quote"; text: string; who: string; when: string; logos?: string[]; notes?: string }
+  | { kind: "quote"; text: string; who: string; when: string; logos?: string[]; image?: string; notes?: string }
   | { kind: "lines"; lines: string[]; aside?: string[]; notes?: string }
   | { kind: "receipt"; id: string; title?: string; image?: string; notes?: string }
   | { kind: "title"; notes?: string }

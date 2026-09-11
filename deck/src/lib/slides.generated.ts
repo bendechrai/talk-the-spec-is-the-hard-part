@@ -159,6 +159,7 @@ export const generatedSections: Section[] = [
         "text": "Whenever you have a choice about the amount of detail and depth to go into, I will always want the more fully fledged solution. Gaps when developing the full feature are not much harder in agentic development. The only exception is a security patch or a major bug.",
         "who": "me, to an agent, at nine in the evening",
         "when": "25 August 2026",
+        "image": "/images/dashboard.jpg",
         "notes": "I wrote that because the agent had just offered me a minimum viable\nversion of an admin dashboard. Counts only, deltas later, sparklines\nmaybe never. Perfectly sensible advice. It is what I would have told a\njunior. And I realised, typing the reply, that the MVP instinct is a cost\nartefact. We cut scope because building was expensive. When building is\ncheap, cutting scope just means shipping less. So I told it: always the\nfull version, unless it is a security patch or a major bug.\n\nAnd then the very next day I made the opposite call. A feature that\nverified who owned an event before handing them the keys. For that one I\nkept a human in the loop and told the agent explicitly not to automate\nit. The rule underneath: when cost collapses, scope-cutting is only\njustified by urgency or by the risk of a confident wrong action against a\nthird party. Trust boundaries stay manual first.",
         "glance": [
           "25 Aug, 9pm, to an agent.",

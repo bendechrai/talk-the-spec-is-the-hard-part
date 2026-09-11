@@ -14,8 +14,9 @@ Conventions:
 - `[SLIDE: photo <file> | caption]` - a full-bleed photo with a caption.
 - `[SLIDE: receipt <id> [bg <file>] | title]` - a transcript receipt from
   deck/src/lib/receipts.json, optionally over a blurred, tilted screenshot.
-- `[SLIDE: quote, <when> - "..." | logos a.svg b.svg]` - a quotation; the
-  optional logos come from deck/public/images/logos and render white.
+- `[SLIDE: quote, <when> - "..." | bg <file> | logos a.svg b.svg]` - a
+  quotation; optional screenshot behind it (blurred, tilted) and optional
+  logos from deck/public/images/logos, rendered white.
 - Lines separated by ` / ` appear one per click. A line starting `!! `
   is a sticker: a tilted prompt bubble on the accent colour.
 - `[DEMO: ...]` - an action on screen. Exact clicks are in RUNBOOK.md.
@@ -191,7 +192,7 @@ habit.
 Here is what that looks like in practice. This is a message I sent to an
 agent at nine in the evening on the twenty-fifth of August.
 
-[SLIDE: quote, 25 August 2026 - "Whenever you have a choice about the amount of detail and depth to go into, I will always want the more fully fledged solution. Gaps when developing the full feature are not much harder in agentic development. The only exception is a security patch or a major bug."]
+[SLIDE: quote, 25 August 2026 - "Whenever you have a choice about the amount of detail and depth to go into, I will always want the more fully fledged solution. Gaps when developing the full feature are not much harder in agentic development. The only exception is a security patch or a major bug." | bg dashboard.jpg]
 > 25 Aug, 9pm, to an agent.
 > It offered MVP admin dashboard: counts only, sparklines maybe never.
 > Perfectly sensible. What I'd tell a junior.

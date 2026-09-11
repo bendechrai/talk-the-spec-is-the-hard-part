@@ -85,8 +85,16 @@ def slide_from_cue(cue, sec):
         prefix, text = m.group(1), m.group(2)
         who, when = next((v for k, v in QUOTE_WHO.items() if k in text), ("", prefix))
         s = {"kind": "quote", "text": text, "who": who, "when": when}
-        if extra.strip().startswith("logos "):
-            s["logos"] = ["/images/logos/" + f for f in extra.strip()[len("logos "):].split()]
+        # extras after " | ": "bg <file>" (blurred, tilted screenshot behind) and/or "logos a b".
+        toks = extra.split()
+        i = 0
+        while i < len(toks):
+            if toks[i] == "bg" and i + 1 < len(toks):
+                s["image"] = "/images/" + toks[i + 1]; i += 2
+            elif toks[i] == "logos":
+                s["logos"] = ["/images/logos/" + f for f in toks[i + 1:]]; break
+            else:
+                i += 1
         return s
     if c.startswith('"') and c.endswith('"'):
         text = c.strip('"')
