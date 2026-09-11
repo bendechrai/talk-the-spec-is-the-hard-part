@@ -90,11 +90,10 @@ function Body({ s }: { s: Slide }) {
     case "title":
       return (
         <div className="slide-title">
-          {process.env.NEXT_PUBLIC_EVENT && <p className="kicker">{process.env.NEXT_PUBLIC_EVENT}</p>}
           <h1>
             The Spec Is
             <br />
-            the Hard Part
+            the <span className="mark">Hard Part</span>
           </h1>
           <p className="byline">Ben Dechrai · @bendechrai</p>
           <div className="title-grid" aria-hidden="true">
